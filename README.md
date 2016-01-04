@@ -16,6 +16,18 @@ Tips:
 
 -force_load：所做的事情跟-all_load其实是一样的，但是-force_load需要指定要进行全部加载的库文件的路径，这样的话，你就只是完全加载了一个库文件，不影响其余库文件的按需加载   
 
+3.iOS 应用被拒的的原因之 PLA 3.3.12 。
+   在审核报告里面说的很清楚，我们可以用strings工具或者otool工具对我们的项目进行检测看有没有class: ASIdentifierManager、selector: advertisingIdentifier framework: AdSupport.framework，首先把在项目里面搜索这几个关键字，可惜，没搜到，唯一的可能就是在静态库里面，用strings工具，打开终端，cd 到 静态库所在的文件夹下 strings LangQin/libMobClickLibrary.a | grep advertisingIdentifier 或者子文件夹下，grep  后面是所要在静态库里面查找的字符串，回车如果查找到，会在显示在终端的下一行命令之中，反之如果没有，则什么都不显示，就这样把静态库都试一遍发现只有友盟里面有这个东西，那说明是友盟统计的问题，通过网上调研，在友盟官方上有这么一句话“由于Appstore禁止不使用广告而采集IDFA的app上架，友盟提供IDFA版和不含IDFA版两个SDK，两个SDK在数据上并没有差异，采集IDFA是为了防止今后因为苹果可能禁止目前使用的openudid而造成的数据波动”以及发布APP Store时的说明。对于两种SDK使用的说明，如果使用前一种SDK，发布时要选上1.serve advertisements within the app
+服务应用中的广告。如果你的应用中集成了广告的时候，你需要勾选一下三项。
+√2.Attribute this app installation to a previously served advertisement.
+跟踪广告带来的安装。
+
+√3.Attribute an action taken within this app to a previously served advertisement
+跟踪广告带来的用户的后续行为。
+
+√4.Limit Ad Tracking setting in iOS
+这一项下的内容其实就是对你的应用使用idfa的目的做下确认，只要你选择了采集idfa，那么这一项都是需要勾选的。
+最后还有一句话“如果您仍因为采集IDFA被Appstore审核拒绝，建议您集成任意一家广告或选用友盟无IDFA版SDK”，我最后使用了无IDFA版SDK，
 
 
 
