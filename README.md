@@ -23,19 +23,25 @@ Tips:
 selector: advertisingIdentifier framework: AdSupport.framework ......
 
 报这条错误的原因如下
+
 1 使用了第三方的库，第三方的库根据IDFA进行跟踪用户，同时APP没有加载广告。
+
 2 使用了第三方的库，第三方的库根据IDFA进行跟踪用户，同时加载了iAD广告。
+
 3 同时使用了iAD+ADMOB等广告
 
 对应的解决方法：
 第一种情况解决方法：
 需要把和IDFA相关的代码和接口去除，因为IDFA只可以用于广告服务。
+
 第二种情况解决方法：
 iAD不使用IDFA，具体怎么实现的，iOS内部搞的，所以要解决这个问题需要把iAD换成类似Admob一类的广告服务，或者按照第一种情况来解决，就是去除第三方中IDFA相关的代码和接口。
+
 第三种情况解决方法:
 大概比较费解，明明加了Admob等广告，为啥还是给我拒绝了呢，这种情况要看广告的加载机制，一般开发者会优先加载iAD,如果没有广告源，则加载Admob（Admob是使用了IDFA），问题就出现了在这里，审核人员一般在美国，那里是有iAD的，或者现在app的状态还没有上线，iad属于测试状态，所以iAD的广告是可以获取，这样就给审核人员一个印象：app使用了IDFA（admob中），但是只是展示了iAD的广告，没有看到其他的广告服务，他们会怀疑你使用IDFA做了其他的事情，所以拒了！！！
 
 解决方式：1.用终端命令在项目中查找那个文件中带有advertisingIdentifier、ASIdentifierManager等字样的字符串 strings LangQin/libMobClickLibrary.a | grep advertisingIdentifier ，在友盟统计中找到了带有advertisingIdentifier标识的字符串，而我们的应用没有加载任何广告，显然属于第一种情况，对应这种情况，在友盟官方提供了两套的SDK（即有无获取IDFA版的）。
+
 解决方式:2.另外，官方还提供另外一种方法，正确填写在Appstore上填写IDFA选项。IDFA选项有四个（汉字是对这个四个选项的说明）
 
 1.serve advertisements within the app
