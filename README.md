@@ -16,10 +16,10 @@ Tips:
 
 -force_load：所做的事情跟-all_load其实是一样的，但是-force_load需要指定要进行全部加载的库文件的路径，这样的话，你就只是完全加载了一个库文件，不影响其余库文件的按需加载   
 
-##### 3.PLA 3.3.12  Advertising Identifier审核被拒终极解决方法 。
+##### 3.PLA 3.3.12   Advertising Identifier 审核被拒解决方法 。
   分析如下：
     由于Apple修改了审核标准，苹果禁止不使用广告而采集IDFA的APP上架，IDFA只能用于广告服务。
-    "You and Your Applications (and any third party with whom you have contracted to serve advertising) may us the Advertising Identifier, and any information obtained through the use of the Advertising Identifier, only for the purpose of serving advertising. If a user resets the Advertising Identifier, then You agree not to combine, correlate, link or otherwise associate, either directly or indirectly, the prior Advertising Identifier and any derived information with the reset Advertising Identifier."审核报告大概是这样的We also found that your app uses the Advertising Identifier but does not include ad functionality. This does not comply with the terms of the Apple Developer Program License Agreement, as required by the App Store Review Guidelines.If your app does not serve ads, please check your code - including any third-party libraries - to remove any instances of:class: ASIdentifierManager
+    "You and Your Applications (and any third party with whom you have contracted to serve advertising) may us the Advertising Identifier, and any information obtained through the use of the Advertising Identifier, only for the purpose of serving advertising. If a user resets the Advertising Identifier, then You agree not to combine, correlate, link or otherwise associate, either directly or indirectly, the prior Advertising Identifier and any derived information with the reset Advertising Identifier.We also found that your app uses the Advertising Identifier but does not include ad functionality. This does not comply with the terms of the Apple Developer Program License Agreement, as required by the App Store Review Guidelines.If your app does not serve ads, please check your code - including any third-party libraries - to remove any instances of:class: ASIdentifierManager
 selector: advertisingIdentifier framework: AdSupport.framework ......
 
 报这条错误的原因如下
@@ -37,6 +37,7 @@ iAD不使用IDFA，具体怎么实现的，iOS内部搞的，所以要解决这�
 
 解决方式：1.用终端命令在项目中查找那个文件中带有advertisingIdentifier、ASIdentifierManager等字样的字符串 strings LangQin/libMobClickLibrary.a | grep advertisingIdentifier ，在友盟统计中找到了带有advertisingIdentifier标识的字符串，而我们的应用没有加载任何广告，显然属于第一种情况，对应这种情况，在友盟官方提供了两套的SDK（即有无获取IDFA版的）。
 解决方式:2.另外，官方还提供另外一种方法，正确填写在Appstore上填写IDFA选项。IDFA选项有四个（汉字是对这个四个选项的说明）
+
 1.serve advertisements within the app
 服务应用中的广告。如果你的应用中集成了广告的时候，你需要勾选这一项。
 
@@ -49,6 +50,6 @@ iAD不使用IDFA，具体怎么实现的，iOS内部搞的，所以要解决这�
 √4.Limit Ad Tracking setting in iOS
 这一项下的内容其实就是对你的应用使用idfa的目的做下确认，只要你选择了采集idfa，那么这一项都是需要勾选的。
 
-官方最后还有一句话“如果您仍因为采集IDFA被Appstore审核拒绝，建议您集成任意一家广告或选用友盟无IDFA版SDK”。如果这么做还是有可能被拒，我最后替换了无IDFA版的友盟SDK。
+如果应用没有使用广告而采集IDFA，则2，3，4项必须选上，但官方最后还有一句话“如果您仍因为采集IDFA被Appstore审核拒绝，建议您集成任意一家广告或选用友盟无IDFA版SDK”。这么做还是有可能被拒，即使没这么做过，我最后还是替换了无IDFA版的友盟SDK。
 
 
