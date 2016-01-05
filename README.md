@@ -31,6 +31,7 @@ selector: advertisingIdentifier framework: AdSupport.framework ......
 3 同时使用了iAD+ADMOB等广告
 
 对应的解决方法：
+
 第一种情况解决方法：
 需要把和IDFA相关的代码和接口去除，因为IDFA只可以用于广告服务。
 
