@@ -60,3 +60,24 @@ iAD不使用IDFA，具体怎么实现的，iOS内部搞的，所以要解决这�
 如果应用没有使用广告而采集IDFA，则2，3，4项必须选上，但官方最后还有一句话“如果您仍因为采集IDFA被Appstore审核拒绝，建议您集成任意一家广告或选用友盟无IDFA版SDK”。这么做还是有可能被拒，即使没这么做过，我最后还是替换了无IDFA版的友盟SDK。
 
 
+
+4、 ##### 后台播放模式没录视屏审核被拒之解决之道-----问题盘查之比较分析法。  
+    问题描述：
+    朗琴项目迭代版本提交审核报了这样的问题 “We began the review of your app but are not able to continue because we need access to a video that demonstrates your app in use on an iOS device. Specifically, since your app utilizes the background audio mode, please include the demonstration of such background mode(s) in use on an actual iOS device within your demo video (app running in the background)”.需要我们提供带有后台播放的Video再上传上去。
+    
+    朗琴中性版本首版本提交审核以后报了这样的问题“Multitasking Apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc.Your app declares support for audio in the UIBackgroundModes key in your Info.plist but did not include features that require persistent audio.The audio key is intended for use by applications that provide audible content to the user while in the background, such as music player or streaming audio applications. Please revise your app to provide audible content to the user while the app is in the background or remove the "audio" setting from the UIBackgroundModes key.
+”
+    问题分析：
+    这两个问题，虽然说法不一样，给人的映像却是一样的问题，只是暂时说不出个所以然，令我感到奇怪的是，为什么朗琴的首版本不报这个问题，非要到迭代版本了，才说要带有后台播放的视频，既然它要，那么给它就是了，对于第二个问题，通过百度、bing\stackOverFlow等等网页式搜索法也还是没找到确切的问题所在。很苦恼，“咋办”两字一直浮现在脑海里面，想过很多，一开始我还想他不是想证明一下能后台播放吗？索性我一打开应用，就播歌，它播歌回到后台以后看到了，就行了，但这种方法是个程序员都知道不好，.....看字面上的问题好像我的后台播放好像还没有配置好的意思，如果是这个原因，找其他的项目来看看，看看他们是不是和中性版本设置的一样，如果一样并且成上架了，那就不是这个问题，反之就是，如果不是，那就再找找之前的应用是不是都没有录后台播放的视频。如果没有录的也上传失败了，那就是这个原因。重录视屏。
+    
+    问题解决：
+    把车载项目找来了看后台配置的代码，确实不一样，车载项目，在启动成功的方法里面，设置了后他播放的代码AVAudioSession *session = [AVAudioSession sharedInstance]; [session setActive:YES error:nil];[session setCategory:AVAudioSessionCategoryPlayback error:nil];而朗琴项目一个也没有，有点欣喜若狂的感觉，又找来了蜗灯项目，蜗灯项目和朗琴一样，没有在启动成功的方法里面设置，也成功了，在找了其它的几个项目，不管设置与否，都成功了。否决了这一命题，接下来就是有没有视频的事儿了，确实，问了下测试，之前的项目都有录后台播放视屏的事，但是后来的这几个视频没录，之前有几个项目也因为没有录后台播放视频，也是审核不过，被驳回了，朗琴合并版和中性版的一样，都没有录后台播放的视频，其它被驳回的APP后面录了视屏以后才成功上传。经过一番思考，还说不定就是这样的问题，貌似也只有这个可能了，录下视频。把应用传上去了再继续修改这里所写的东西。
+
+
+
+
+
+
+
+
+
