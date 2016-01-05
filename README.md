@@ -16,21 +16,39 @@ Tips:
 
 -force_load：所做的事情跟-all_load其实是一样的，但是-force_load需要指定要进行全部加载的库文件的路径，这样的话，你就只是完全加载了一个库文件，不影响其余库文件的按需加载   
 
-##### 3.iOS 应用被拒的的原因之 PLA 3.3.12 。
+##### 3.PLA 3.3.12  Advertising Identifier审核被拒终极解决方法 。
+  分析如下：
+    由于Apple修改了审核标准，苹果禁止不使用广告而采集IDFA的APP上架，IDFA只能用于广告服务。
+    "You and Your Applications (and any third party with whom you have contracted to serve advertising) may us the Advertising Identifier, and any information obtained through the use of the Advertising Identifier, only for the purpose of serving advertising. If a user resets the Advertising Identifier, then You agree not to combine, correlate, link or otherwise associate, either directly or indirectly, the prior Advertising Identifier and any derived information with the reset Advertising Identifier."审核报告大概是这样的We also found that your app uses the Advertising Identifier but does not include ad functionality. This does not comply with the terms of the Apple Developer Program License Agreement, as required by the App Store Review Guidelines.If your app does not serve ads, please check your code - including any third-party libraries - to remove any instances of:class: ASIdentifierManager
+selector: advertisingIdentifier framework: AdSupport.framework ......
 
-  审核报告大概是这样的We also found that your app uses the Advertising Identifier but does not include ad functionality. This does not comply with the terms of the Apple Developer Program License Agreement, as required by the App Store Review Guidelines.If your app does not serve ads, please check your code - including any third-party libraries - to remove any instances of:class: ASIdentifierManager
-selector: advertisingIdentifier framework: AdSupport.framework ......最后 If you do not have access to the libraries' source, you may be able to search the compiled binary using the "strings" or "otool" command line tools. The "strings" tool lists the methods that the library calls, and "otool -ov" will list the Objective-C class structures and their defined methods. These techniques can help you narrow down where the problematic code resides说的是相当清楚了，我们可以用strings工具或者otool工具对我们的项目进行检测看有没有class: ASIdentifierManager、selector: advertisingIdentifier framework: AdSupport.framework，
+报这条错误的原因如下
+1 使用了第三方的库，第三方的库根据IDFA进行跟踪用户，同时APP没有加载广告。
+2 使用了第三方的库，第三方的库根据IDFA进行跟踪用户，同时加载了iAD广告。
+3 同时使用了iAD+ADMOB等广告
 
-   按照他的方法，我首首选的方法是strings,在网上学了下他的用法，首先把在项目里面搜索这几个关键字，可惜，一个都没搜到，恐怕是在静态库里面去了，用strings工具，打开终端，cd 到 静态库所在的文件夹下（LangQin是友盟统计的静态库所在的文件夹） strings LangQin/libMobClickLibrary.a | grep advertisingIdentifier 或者子文件夹下，grep  后面是所要在静态库里面查找的字符串，回车如果查找到，结果会在显示在终端的下一行命令之中，反之如果没有，则什么都不显示，就这样把静态库都试一遍发现只有友盟里面有这个东西，那说明是友盟统计的问题，通过网上调研，在友盟官方上有这么一句话“由于Appstore禁止不使用广告而采集IDFA的app上架，友盟提供IDFA版和不含IDFA版两个SDK，两个SDK在数据上并没有差异，采集IDFA是为了防止今后因为苹果可能禁止目前使用的openudid而造成的数据波动”以及发布APP Store时的说明。对于两种SDK使用的说明，如果使用前一种SDK，发布时要选上1.serve advertisements within the app
-服务应用中的广告。
+对应的解决方法：
+第一种情况解决方法：
+需要把和IDFA相关的代码和接口去除，因为IDFA只可以用于广告服务。
+第二种情况解决方法：
+iAD不使用IDFA，具体怎么实现的，iOS内部搞的，所以要解决这个问题需要把iAD换成类似Admob一类的广告服务，或者按照第一种情况来解决，就是去除第三方中IDFA相关的代码和接口。
+第三种情况解决方法:
+大概比较费解，明明加了Admob等广告，为啥还是给我拒绝了呢，这种情况要看广告的加载机制，一般开发者会优先加载iAD,如果没有广告源，则加载Admob（Admob是使用了IDFA），问题就出现了在这里，审核人员一般在美国，那里是有iAD的，或者现在app的状态还没有上线，iad属于测试状态，所以iAD的广告是可以获取，这样就给审核人员一个印象：app使用了IDFA（admob中），但是只是展示了iAD的广告，没有看到其他的广告服务，他们会怀疑你使用IDFA做了其他的事情，所以拒了！！！
 
-  如果你的应用中集成了广告的时候，你需要勾选一下三项。
+解决方式：1.用终端命令在项目中查找那个文件中带有advertisingIdentifier、ASIdentifierManager等字样的字符串 strings LangQin/libMobClickLibrary.a | grep advertisingIdentifier ，在友盟统计中找到了带有advertisingIdentifier标识的字符串，而我们的应用没有加载任何广告，显然属于第一种情况，对应这种情况，在友盟官方提供了两套的SDK（即有无获取IDFA版的）。
+解决方式:2.另外，官方还提供另外一种方法，正确填写在Appstore上填写IDFA选项。IDFA选项有四个（汉字是对这个四个选项的说明）
+1.serve advertisements within the app
+服务应用中的广告。如果你的应用中集成了广告的时候，你需要勾选这一项。
+
 √2.Attribute this app installation to a previously served advertisement.
-跟踪广告带来的安装。√3.Attribute an action taken within this app to a previously served advertisement跟踪广告带来的用户的后续行为。√4.Limit Ad Tracking setting in iOS
+跟踪广告带来的安装。
+
+√3.Attribute an action taken within this app to a previously served advertisement
+跟踪广告带来的用户的后续行为。
+
+√4.Limit Ad Tracking setting in iOS
 这一项下的内容其实就是对你的应用使用idfa的目的做下确认，只要你选择了采集idfa，那么这一项都是需要勾选的。
-最后还有一句话“如果您仍因为采集IDFA被Appstore审核拒绝，建议您集成任意一家广告或选用友盟无IDFA版SDK”，我最后使用了无IDFA版SDK，
 
-
-
+官方最后还有一句话“如果您仍因为采集IDFA被Appstore审核拒绝，建议您集成任意一家广告或选用友盟无IDFA版SDK”。如果这么做还是有可能被拒，我最后替换了无IDFA版的友盟SDK。
 
 
