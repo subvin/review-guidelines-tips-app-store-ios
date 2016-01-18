@@ -79,3 +79,16 @@ iAD不使用IDFA，具体怎么实现的，iOS内部搞的，所以要解决这�
   把车载项目找来了看后台配置的代码，确实不一样，车载项目，在启动成功的方法里面，设置了后他播放的代码AVAudioSession *session = [AVAudioSession sharedInstance]; [session setActive:YES error:nil];[session setCategory:AVAudioSessionCategoryPlayback error:nil];而朗琴项目一个也没有，有点欣喜若狂的感觉，又找来了蜗灯项目，蜗灯项目和朗琴一样，没有在启动成功的方法里面设置，也成功了，在找了其它的几个项目，不管设置与否，都成功了。否决了这一命题，接下来就是有没有视频的事儿了，确实，问了下测试，之前的项目都有录后台播放视屏的事，但是后来的这几个视频没录，之前有几个项目也因为没有录后台播放视频，也是审核不过，被驳回了，朗琴合并版和中性版的一样，都没有录后台播放的视频，其它被驳回的APP后面录了视屏以后才成功上传。经过一番思考，还说不定就是这样的问题，貌似也只有这个可能了，录下视频。把应用传上去了再继续修改这里所写的东西。
 
 
+```
+发件人 Apple 
+8.6 - Apps that include the ability to download music or video content from third party sources (e.g. YouTube, SoundCloud, Vimeo, etc) without explicit authorization from those sources will be rejected 
+8.6 Details 
+
+We found that your app allows users to download music or video content without authorization from the relevant third-party sources. 
+
+We’ve attached screenshot(s) for your reference. 
+
+Next Steps 
+
+Please provide documentary evidence of your rights to allow music or video content download from third-party sources. If you do not have the requested permissions, please remove the music or video download functionality from your app.
+```
