@@ -108,12 +108,19 @@ Please provide documentary evidence of your rights to allow music or video conte
    
    问题解决：
    通过查找stackoverFlow 得到了这样的回答
+   
   1、 Download https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
+  
   2、Double-click to install to Keychain.
+  
   3、Then in Keychain, Select View -> "Show Expired Certificates" in Keychain app.It will list all the expired certifcates.
+  
   4、Delete "Apple Worldwide Developer Relations Certificate Authority certificates" from "login" tab And also delete it from "System" tab.
+  
   也就是说重新下载根证书，双击打开，打开钥匙串，点击显示按钮，选中显示过期证书，从“登录”和“系统”选中删除过期的“Apple Worldwide Developer Relations Certificate Authority certificates”证书，就可以打包了。
+  
   附上截图
+  
   ![image](https://github.com/subvin/pictures/screenshot1.png)
   
   ![image](https://github.com/subvin/pictures/screenshot1.png)
