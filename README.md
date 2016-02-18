@@ -102,7 +102,7 @@ Please provide documentary evidence of your rights to allow music or video conte
   
   2016.2.15日打企业包的时候，意外的报了这样的错误,附上截图
   
-   ![image](/pictures/screenshot1.png)
+   ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot1.png)
    
    “missing ios distribution signing identity for XXX interactive marketing planning co ltd”或“wildcard APP IDS can not be used to create in house provisioning profiles please use an explicit app id”
    
@@ -121,13 +121,13 @@ Please provide documentary evidence of your rights to allow music or video conte
   
   附上截图
   
-  ![image](https://github.com/subvin/pictures/screenshot1.png)
+  ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot2.png)
   
-  ![image](https://github.com/subvin/pictures/screenshot1.png)
+  ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot3.png)
   
-  ![image](https://github.com/subvin/pictures/screenshot1.png)
+  ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot4.png)
   
-  ![image](https://github.com/subvin/pictures/screenshot1.png)
+  ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot5.png)
 
 
 
