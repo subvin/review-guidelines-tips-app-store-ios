@@ -96,11 +96,31 @@ Please provide documentary evidence of your rights to allow music or video conte
         利用公司服务器做一个是否显示和隐藏云音乐功能的开关，在审核期间，服务器将云音乐显示开关设置为关闭状态，即移除改云音乐功能；待app store审核通过后，再打开服务器的云音乐开关，显示云音乐按钮，此时云音乐功能恢复。   
         
 
-##### 6、苹果根证书过期、企业包打不了的问题
+##### 6、苹果根证书过期、“此证书签发者无效”、企业包打不了的问题
 
-       问题描述：
+  问题描述：
+  
   2016.2.15日打企业包的时候，意外的报了这样的错误,附上截图
+  
    ![image](https://github.com/subvin/pictures/screenshot1.png)
+   
+   “missing ios distribution signing identity for XXX interactive marketing planning co ltd”或“wildcard APP IDS can not be used to create in house provisioning profiles please use an explicit app id”
+   
+   问题解决：
+   通过查找stackoverFlow 得到了这样的回答
+  1、 Download https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
+  2、Double-click to install to Keychain.
+  3、Then in Keychain, Select View -> "Show Expired Certificates" in Keychain app.It will list all the expired certifcates.
+  4、Delete "Apple Worldwide Developer Relations Certificate Authority certificates" from "login" tab And also delete it from "System" tab.
+  也就是说重新下载根证书，双击打开，打开钥匙串，点击显示按钮，选中显示过期证书，从“登录”和“系统”选中删除过期的“Apple Worldwide Developer Relations Certificate Authority certificates”证书，就可以打包了。
+  附上截图
+  ![image](https://github.com/subvin/pictures/screenshot1.png)
+  
+  ![image](https://github.com/subvin/pictures/screenshot1.png)
+  
+  ![image](https://github.com/subvin/pictures/screenshot1.png)
+  
+  ![image](https://github.com/subvin/pictures/screenshot1.png)
 
 
 
