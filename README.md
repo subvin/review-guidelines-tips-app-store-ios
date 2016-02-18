@@ -100,7 +100,9 @@ Please provide documentary evidence of your rights to allow music or video conte
 
   问题描述：
   
-  打企业包的时候，意外的报了这样的错误,附上截图
+  打企业包的时候，意外的报了这样的错误,Xcode attempted to locate or generate matching signing assets and failed to do so becaue of the following issues
+  
+  Missing IOS Distribution signing identity for XXXXXX Co.,Ltd
   
    ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/issue2.png)
    
