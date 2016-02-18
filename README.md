@@ -100,7 +100,7 @@ Please provide documentary evidence of your rights to allow music or video conte
 
        问题描述：
   2016.2.15日打企业包的时候，意外的报了这样的错误,附上截图
-   ![image](https://github.com/subvin/pictures/screenshot1)
+   ![image](https://github.com/subvin/pictures/screenshot1.png)
 
 
 
