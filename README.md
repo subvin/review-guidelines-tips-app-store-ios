@@ -117,7 +117,7 @@ Please provide documentary evidence of your rights to allow music or video conte
   
   4、Delete "Apple Worldwide Developer Relations Certificate Authority certificates" from "login" tab And also delete it from "System" tab.
   
-  也就是说重新下载根证书，双击打开，打开钥匙串，点击显示按钮，选中显示过期证书，从“登录”和“系统”选中删除过期的“Apple Worldwide Developer Relations Certificate Authority certificates”证书，就可以打包了。
+  也就是说重新下载根证书，双击打开，打开钥匙串，点击显示按钮，选中显示过期证书，从“登录”和“系统”选中删除过期的“Apple Worldwide Developer Relations Certificate Authority certificates”证书，你会发现“此证书签发者无效”变成了“此证书有效”，不出意外，打包就没问题了。
   
   附上截图
   
