@@ -121,14 +121,18 @@ Please provide documentary evidence of your rights to allow music or video conte
   
   附上截图
   
-  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/screenshot2.png)
+  双击运行下载过来的根证书。
   
   ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/screenshot3.png)
   
+  从登录和系统中找到失效的根证书"Apple Worldwide Developer Relations Certificate Authority certificates"并删除
+  
   ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/screenshot4.png)
   
-  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/solve.png)
+  点击新的下载安装好的根证书你会看见
+  
+  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/solve.png)
 
-
+ 现在，不出意外的话，打包就没问题了。
 
 
