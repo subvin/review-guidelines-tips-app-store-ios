@@ -121,13 +121,13 @@ Please provide documentary evidence of your rights to allow music or video conte
   
   附上截图
   
-  ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot2.png)
+  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot2.png)
   
-  ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot3.png)
+  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot3.png)
   
-  ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot4.png)
+  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot4.png)
   
-  ![image](https://github.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot5.png)
+  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/pictures/screenshot5.png)
 
 
 
