@@ -104,8 +104,6 @@ Please provide documentary evidence of your rights to allow music or video conte
   
   Missing IOS Distribution signing identity for XXXXXX Co.,Ltd
   
-   ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/issue2.png)
-   
    “missing ios distribution signing identity for XXX interactive marketing planning co ltd”或“wildcard APP IDS can not be used to create in house provisioning profiles please use an explicit app id”
    
    问题解决：
@@ -129,9 +127,11 @@ Please provide documentary evidence of your rights to allow music or video conte
   
   从登录和系统中找到失效的根证书"Apple Worldwide Developer Relations Certificate Authority certificates"并删除
   
-  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/screenshot4.png)
+  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/screenshot2.png)
   
   点击新的下载安装好的根证书你会看见
+  
+  ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/screenshot4.png)
   
   ![image](https://raw.githubusercontent.com/Arsenals/review-guidelines-tips-app-store-ios/master/pictures/solve.png)
 
