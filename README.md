@@ -137,4 +137,7 @@ Please provide documentary evidence of your rights to allow music or video conte
 
  现在，不出意外的话，打包就没问题了。
 
-
+##### 7.发布ad hoc 测试包客户无法安装的问题总结：
+a.确认是否添加了客户的uuid,可以进入开发者中心(https://developer.apple.com)查看后台是否已经添加。
+b.确认客户手机是否已经安装了该应用的app store 版本或企业版本而导致安装失败的原因。
+解决办法：卸载之前的应用即可。
