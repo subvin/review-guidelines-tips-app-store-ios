@@ -141,3 +141,57 @@ Please provide documentary evidence of your rights to allow music or video conte
 a.确认是否添加了客户的uuid,可以进入开发者中心 (https://developer.apple.com) 查看后台是否已经添加。   
 b.确认客户手机是否已经安装了该应用的app store 版本或企业版本而导致安装失败的原因。   
 解决办法：卸载之前的应用即可。   
+
+
+***********
+
+2.1 - Apps that crash will be rejected
+2.16 - Multitasking Apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc.
+2.16 Details
+
+Your app declares support for location in the UIBackgroundModes key in your Info.plist file but does not declare any features that require persistent location. Apps that declare support for location in the UIBackgroundModes key in your Info.plist file must have features that require persistent location.
+
+Next Steps
+
+Please revise your app to include features that require the persistent use of real-time location updates while the app is in the background. Please also add the following battery use disclaimer in your Application Description:
+"Continued use of GPS running in the background can dramatically decrease battery life."
+
+If your app does not require persistent real-time location updates, please remove the "location" setting from the UIBackgroundModes key. You may wish to use the significant-change location service or the region monitoring location service if persistent real-time location updates are not required for your app features.
+
+Resources
+
+For more information, please review the Starting the Significant-Change Location Service and Monitoring Shape-Based Regions. 
+
+2.1 Details
+
+During review, your app crashed on iPhone running iOS 9.2.1 when we tapped on the 我 tab.
+
+This occurred when your app was used: 
+- On Wi-Fi
+- On cellular network
+
+We have attached detailed crash logs to help troubleshoot this issue.
+
+Next Steps
+
+Please revise your app and test it on a device to ensure that it runs as expected.
+
+Resources
+
+For information on how to symbolicate and read a crash log, please see Tech Note TN2151 Understanding and Analyzing iPhone OS Application Crash Reports.
+
+If you have difficulty reproducing this issue, please try testing the workflow described in Testing Workflow with Xcode's Archive feature.
+
+If you have code-level questions after utilizing the above resources, you may wish to consult with Apple Developer Technical Support. When the DTS engineer follows up with you, please be ready to provide:
+- complete details of your rejection issue(s)
+- screenshots
+- steps to reproduce the issue(s)
+- symbolicated crash logs - if your issue results in a crash log
+
+If you have difficulty reproducing a reported issue, please try testing the workflow described in Technical Q&A QA1764: How to reproduce bugs reported against App Store submissions.
+
+If you have code-level questions after utilizing the above resources, you may wish to consult with Apple Developer Technical Support. When the DTS engineer follows up with you, please be ready to provide:
+- complete details of your rejection issue(s)
+- screenshots
+- steps to reproduce the issue(s)
+- symbolicated crash logs - if your issue results in a crash log
