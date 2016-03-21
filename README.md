@@ -195,3 +195,16 @@ If you have code-level questions after utilizing the above resources, you may wi
 - screenshots
 - steps to reproduce the issue(s)
 - symbolicated crash logs - if your issue results in a crash log
+
+
+**************
+通过Application Loader上传.ipa文件到App Store发现以下错误：
+
+```
+Package Summary:
+1 package(s) were not uploaded because they had problems:
+	/var/folders/2b/lksn_kq118n_sttybl8s25vw0000gn/T/B16954D4-43BA-49A9-BE6E-E99F431CA82A/1092025201.itmsp - Error Messages:
+		ERROR ITMS-4238: "Redundant Binary Upload. There already exists a binary upload with build version '1' for train '1.2.1'" at SoftwareAssets/PreReleaseSoftwareAsset
+```
+
+说明：以上错误是没有注意version 和 build的升级命名问题。参照以下标准：http://www.ifeegoo.com/recommended-mobile-application-version-name-management-specification.html
