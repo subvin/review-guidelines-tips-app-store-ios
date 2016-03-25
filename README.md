@@ -208,3 +208,6 @@ Package Summary:
 ```
 
 说明：以上错误是没有注意version 和 build的升级命名问题。参照以下标准：http://www.ifeegoo.com/recommended-mobile-application-version-name-management-specification.html
+
+
+后台音乐播放需要出示演示视频。
