@@ -211,3 +211,50 @@ Package Summary:
 
 
 后台音乐播放需要出示演示视频。
+
+##### 8.发布app store 被拒(云音乐未隐藏)
+被拒理由：
+
+2.1 - Apps that crash will be rejected
+8.6 - Apps that include the ability to download music or video content from third party sources (e.g. YouTube, SoundCloud, Vimeo, etc) without explicit authorization from those sources will be rejected
+8.6 Details
+
+We found that your app still allows users to download music or video content without authorization from the relevant third-party sources.
+
+We’ve attached screenshot(s) for your reference.
+
+Next Steps
+
+Please provide documentary evidence of your rights to allow music or video content download from third-party sources. If you do not have the requested permissions, please remove the music or video download functionality from your app. 
+
+
+2.1 Details
+
+During review, your app crashed on iPhone running iOS 9.3.1 when we tapped on the download button. 
+
+This occurred when your app was used: 
+- On Wi-Fi
+- On cellular network
+
+We have attached detailed crash logs to help troubleshoot this issue.
+
+Next Steps
+
+Please revise your app and test it on a device to ensure that it runs as expected.
+
+Resources
+
+For information on how to symbolicate and read a crash log, please see Tech Note TN2151 Understanding and Analyzing iPhone OS Application Crash Reports.
+
+If you have difficulty reproducing this issue, please try testing the workflow described in Testing Workflow with Xcode's Archive feature.
+
+If you have code-level questions after utilizing the above resources, you may wish to consult with Apple Developer Technical Support. When the DTS engineer follows up with you, please be ready to provide:
+- complete details of your rejection issue(s)
+- screenshots
+- steps to reproduce the issue(s)
+- symbolicated crash logs - if your issue results in a crash log
+    
+   
+解决办法：   在提交app store审核期间，隐藏云音乐及所有涉及第三方播放器的控件和相关操作，例如下载等功能。
+	
+
