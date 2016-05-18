@@ -258,3 +258,18 @@ If you have code-level questions after utilizing the above resources, you may wi
 解决办法：   在提交app store审核期间，隐藏云音乐及所有涉及第三方播放器的控件和相关操作，例如下载等功能。
 	
 
+***
+
+## 关于 支持 IPv6 DNS64/NAT64 网络的说明
+
+#### 支持 IPv6 DNS64/NAT64 网络的说明
+
+由于IPv4地址池中的地址即将消耗殆尽，企业和电信提供商加快发布 IPv6 DNS64/NAT64 网络。DNS64/NAT64 网络是仅支持 IPv6 的网络，并且继续通过转化的形式提供 IPv4 内容的访问。依据你应用的不同，这种转换有不同的影响：
+
+如果你采用高级别的网络 API，例如 `NSURLSession` 和 `CFNetwork` 框架，而且是通过域名来连接，针对于 IPv6 地址来说，你的客户端应用不需要做任何修改，如果你不是通过域名来连接，你可能需要做一定的修改。参见[在连接之前避免解析DNS名](https://developer.apple.com/library/mac/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html#//apple_ref/doc/uid/TP40010220-CH4-SW20)，更多关于  `CFNetwork` 信息，请参见 CFNetwork Framework Reference 。
+
+如果你开发的是服务端应用或者其他低级别的网络应用，你需要确保你的套接字码需要同时兼容 IPv4 和 IPv6 地址。请参考：RFC4038: Application Aspects of IPv6 Transition.
+
+#### 什么驱动 IPv6 的采纳
+
+主要的网络服务提供商，包括美国大多数的电信运营商，都在积极的促进和部署 IPv6。这是由于多种因素导致的。
