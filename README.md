@@ -274,6 +274,28 @@ If you have code-level questions after utilizing the above resources, you may wi
 
 主要的网络服务提供商，包括美国大多数的电信运营商，都在积极的促进和部署 IPv6。这是由于多种因素导致的。
 
+#### app 适配IPv6 DNS64/NAT64 网络方案    
+
+反复阅读官方和其他相关文档，关于如何支持IPV6-Only，官方提出了如下几点：    
+1. Use High-Level Networking Frameworks;    
+2. Don’t Use IP Address Literals;    
+3. Check Source Code for IPv6 DNS64/NAT64 Incompatibilities;    
+4. Use System APIs to Synthesize IPv6 Addresses;    
+
+第一点：使用高级别API作为我们的网络请求框架;    
+
+第二点：不是用IP地址字面量：    
+针对第二点，目前使用了IP地址字面量的接口仍然可以正常访问网络，官方文档指出：In iOS 9 and OS X 10.11 and later, NSURLSession and CFNetwork automatically synthesize IPv6 addresses from IPv4 literals locally on devices operating on DNS64/NAT64 networks. However, you should still work to rid your code of IP address literals.    
+所以需要将IP字面量改为域名。
+
+第三点：检查IPv6 DNS64/NAT64 的兼容性    
+构建NAT64 网络，检查APP 在此网络下是否可以正常访问，打开系统偏好设置，长按住Alt 打开共享，选择创建NAT64 网络，共享来源连接选择Thunderbolt 以太网,并用WIFI端口共享给电脑，设置下WIFI名称以及密码相关，启动互联网共享，用手机连接该网络，如果App 可以正常访问网络，说明NAT64 网络环境下App 可以正常访问网络，不需要做任何事情，反正，需要做NAT64 网络的兼容性处理（目前微信是这样的情况，无法正常访问）。
+
+第四点：使用同步了IPv6 地址系统API；    
+
+特别指出：[文章：](http://www.jianshu.com/p/a6bab07c4062)讨论了Reachability是否需要修改支持IPV6的问题,特别指出，Reachability不需要做任何修改，在iOS9上就可以支持IPV6和IPV4，但是在iOS9以下会存在bug ，日后需要引起注意。    
+
+
 ***
 
 ## 在TARGETS －》Capabilities －》Background Modes 中选中了Voice over IP，开启了VOIP服务，而app没有相关的业务app 审核被拒
