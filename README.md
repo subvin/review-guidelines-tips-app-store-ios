@@ -273,3 +273,36 @@ If you have code-level questions after utilizing the above resources, you may wi
 #### 什么驱动 IPv6 的采纳
 
 主要的网络服务提供商，包括美国大多数的电信运营商，都在积极的促进和部署 IPv6。这是由于多种因素导致的。
+
+***
+
+## 在TARGETS －》Capabilities －》Background Modes 中选中了Voice over IP，开启了VOIP服务，而app没有相关的业务app 审核被拒
+
+#### 提交app store被拒说明
+2.16 - Multitasking Apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc.
+2.16 Details
+
+Your app declares support for VoIP in the UIBackgroundModes key in your Info.plist, but does not include any Voice over IP services.
+
+Next Steps
+
+Please revise your app to either add VoIP features or remove the "voip" setting from the UIBackgroundModes key.
+
+We recognize that VoIP can provide "keep alive" functionality that is useful for many app features. However, using VoIP in this manner is not the intended purpose of VoIP.
+
+Resources
+
+If you have difficulty reproducing a reported issue, please try testing the workflow described in Technical Q&A QA1764: How to reproduce bugs reported against App Store submissions.
+
+If you have code-level questions after utilizing the above resources, you may wish to consult with Apple Developer Technical Support. When the DTS engineer follows up with you, please be ready to provide:
+- complete details of your rejection issue(s)
+- screenshots
+- steps to reproduce the issue(s)
+- symbolicated crash logs - if your issue results in a crash log
+
+
+#### 解决方法 ：在TARGETS －》Capabilities －》Background Modes 中把选中选中的Voice over IP 的勾选去掉
+
+
+
+
