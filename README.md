@@ -273,6 +273,34 @@ If you have code-level questions after utilizing the above resources, you may wi
 #### 什么驱动 IPv6 的采纳
 
 主要的网络服务提供商，包括美国大多数的电信运营商，都在积极的促进和部署 IPv6。这是由于多种因素导致的。
+    
+#### App 支持 IPv6 DNS64/NAT64 网络的应对方案
+
+官方推荐方案如下：    
+1. Use High-Level Networking Frameworks；    
+2. Don’t Use IP Address Literals;    
+3. Check Source Code for IPv6 DNS64/NAT64 Incompatibilities;    
+4. Use System APIs to Synthesize IPv6 Addresses。    
+
+翻译过来就是如下：
+1、使用高级别的网络框架    
+检查网络请求框架是否使用了低级别的网络请求API；（本人理解：那些C语言编写的C语言网络请求，需要注意适配IPv6环境）    
+
+2、不使用IP字面量
+虽然现在采用IP字面量接口的方式去访问数据，仍然可以正常获取数据，但是官方规定，需要将它改为域名的方式。项目中如果有有IP字面量的形式的接口最好将它纠正为域名。    
+
+3、检测APP  是否支持IPv6 DNS64/NAT64环境    
+按照如下步骤构建NAT64 网络：
+i、点击系统偏好设置
+ii、长按住Option 键，打开共享，选中创建NAT64网络，
+iii、“共享以下来源的连接：”选中为：THunderbolt Ethernet;“用以下端口共享给电脑：”选中为：WIFI；
+iiii、WIFI选项里面设置共享名称和密码，再启动互联网共享。
+搭建NAT64 环境完毕，用手机连接共享的网络，打开你的应用，如果应用能够正常联网，说明App 支持IPv6 DNS64/NAT64环境(目前只发现微信不可以）    
+
+4、使用系统API同步Ipv6 地址    
+言外之意就是要升级系统。    
+
+
 
 ***
 
