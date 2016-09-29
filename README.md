@@ -2,9 +2,9 @@
 
 ## 12.Xcode8 iOS10上传AppStore构建版本无效
 1.问题描述: 使用Xcode8打包上传AppStore后出现构建版本无效, 无法构建版本   
-![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/edit/master/pictures/unBuild_01.png)   
+![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/blob/master/pictures/unBuild_01.png)   
 2.问题原因: iOS10更加注重用户隐私保护, 使用内容必须要在plist文件中做对应的声明   
-![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/edit/master/pictures/unBuild_02.png)   
+![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/blob/master/pictures/unBuild_02.png)   
 ####注意: 可能应用中没有真正使用到对应的权限, 也会出现这个问题(可能调用了API), 具体要看Apple反馈的邮件, 里面会详细的注明需要添加哪些权限
 ***
 
