@@ -1,5 +1,35 @@
 # ios-app-store-review-guidelines-tips
 
+
+## 13 、App Store 上传被拒问题总结之未提供登陆账号给审核人员导致后台播放无法查实被拒的问题    
+
+**************  
+
+#### 1、问题描述：在被拒的原因里面有如下表述  
+
+
+Information Needed
+
+
+We began the review of your app but aren't able to continue because we need additional information about your app.
+
+At your earliest opportunity, please review the following question(s) and provide as much detailed information as you can. The more information you can provide upfront, the sooner we can complete your review.
+
+1) What is the purpose of declaring Audio background mode? Please explain the need for this background mode and where the usage can be found in your binary.
+
+Once you reply to this message in Resolution Center with the requested information, we can proceed with your review.
+
+另外，附上了App 的登陆首页
+
+
+#### 2、问题分析：   
+
+从表述上来看似乎和背景播放有关，而之前也出现过类似因为后台播放被拒的问题，这已早有所述，查看了上传视频，确实有后台播放相关的录像。说明这和后台播放这块没关系，在仔细阅读第一条最后7个的单词和附件的图片的时候，应该是由于未提供测试账号导致的问题。
+
+#### 2、解决方法：   
+再次打包，附上测试登陆账号和密码。
+************** 
+
 ## 12.Xcode8 iOS10上传AppStore构建版本无效
 1.问题描述: 使用Xcode8打包上传AppStore后出现构建版本无效, 无法构建版本   
 ![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/blob/master/pictures/unBuild_01.png)   
