@@ -1,5 +1,43 @@
 # ios-app-store-review-guidelines-tips
 
+
+## 13 、App Store 上传被拒问题总结之未提供登陆账号给审核人员导致后台播放无法查实被拒的问题    
+
+**************  
+
+#### 1、问题描述：在被拒的原因里面有如下表述  
+
+
+Information Needed
+
+
+We began the review of your app but aren't able to continue because we need additional information about your app.
+
+At your earliest opportunity, please review the following question(s) and provide as much detailed information as you can. The more information you can provide upfront, the sooner we can complete your review.
+
+1) What is the purpose of declaring Audio background mode? Please explain the need for this background mode and where the usage can be found in your binary.
+
+Once you reply to this message in Resolution Center with the requested information, we can proceed with your review.
+
+另外，附上了App 的登陆首页
+
+
+#### 2、问题分析：   
+
+从表述上来看似乎和背景播放有关，而之前也出现过类似因为后台播放被拒的问题，这已早有所述，查看了上传视频，确实有后台播放相关的录像。说明这和后台播放这块没关系，在仔细阅读第一条最后7个的单词和附件的图片的时候，应该是由于未提供测试账号导致的问题。
+
+#### 2、解决方法：   
+再次打包，附上测试登陆账号和密码。
+************** 
+
+## 12.Xcode8 iOS10上传AppStore构建版本无效
+1.问题描述: 使用Xcode8打包上传AppStore后出现构建版本无效, 无法构建版本   
+![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/blob/master/pictures/unBuild_01.png)   
+2.问题原因: iOS10更加注重用户隐私保护, 使用内容必须要在plist文件中做对应的声明   
+![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/blob/master/pictures/unBuild_02.png)   
+####注意: 可能应用中没有真正使用到对应的权限, 也会出现这个问题(可能调用了API), 具体要看Apple反馈的邮件, 里面会详细的注明需要添加哪些权限
+***
+
 Tips:
 1.个人App Store的审核似乎没有企业App Store账号审核严格。
 
@@ -211,3 +249,131 @@ Package Summary:
 
 
 后台音乐播放需要出示演示视频。
+
+##### 8.发布app store 被拒(云音乐未隐藏)
+被拒理由：
+
+2.1 - Apps that crash will be rejected
+8.6 - Apps that include the ability to download music or video content from third party sources (e.g. YouTube, SoundCloud, Vimeo, etc) without explicit authorization from those sources will be rejected
+8.6 Details
+
+We found that your app still allows users to download music or video content without authorization from the relevant third-party sources.
+
+We’ve attached screenshot(s) for your reference.
+
+Next Steps
+
+Please provide documentary evidence of your rights to allow music or video content download from third-party sources. If you do not have the requested permissions, please remove the music or video download functionality from your app. 
+
+
+2.1 Details
+
+During review, your app crashed on iPhone running iOS 9.3.1 when we tapped on the download button. 
+
+This occurred when your app was used: 
+- On Wi-Fi
+- On cellular network
+
+We have attached detailed crash logs to help troubleshoot this issue.
+
+Next Steps
+
+Please revise your app and test it on a device to ensure that it runs as expected.
+
+Resources
+
+For information on how to symbolicate and read a crash log, please see Tech Note TN2151 Understanding and Analyzing iPhone OS Application Crash Reports.
+
+If you have difficulty reproducing this issue, please try testing the workflow described in Testing Workflow with Xcode's Archive feature.
+
+If you have code-level questions after utilizing the above resources, you may wish to consult with Apple Developer Technical Support. When the DTS engineer follows up with you, please be ready to provide:
+- complete details of your rejection issue(s)
+- screenshots
+- steps to reproduce the issue(s)
+- symbolicated crash logs - if your issue results in a crash log
+    
+   
+解决办法：   在提交app store审核期间，隐藏云音乐及所有涉及第三方播放器的控件和相关操作，例如下载等功能。
+	
+
+***
+
+## 关于 支持 IPv6 DNS64/NAT64 网络的说明
+
+#### 支持 IPv6 DNS64/NAT64 网络的说明
+
+由于IPv4地址池中的地址即将消耗殆尽，企业和电信提供商加快发布 IPv6 DNS64/NAT64 网络。DNS64/NAT64 网络是仅支持 IPv6 的网络，并且继续通过转化的形式提供 IPv4 内容的访问。依据你应用的不同，这种转换有不同的影响：
+
+如果你采用高级别的网络 API，例如 `NSURLSession` 和 `CFNetwork` 框架，而且是通过域名来连接，针对于 IPv6 地址来说，你的客户端应用不需要做任何修改，如果你不是通过域名来连接，你可能需要做一定的修改。参见[在连接之前避免解析DNS名](https://developer.apple.com/library/mac/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html#//apple_ref/doc/uid/TP40010220-CH4-SW20)，更多关于  `CFNetwork` 信息，请参见 CFNetwork Framework Reference 。
+
+如果你开发的是服务端应用或者其他低级别的网络应用，你需要确保你的套接字码需要同时兼容 IPv4 和 IPv6 地址。请参考：RFC4038: Application Aspects of IPv6 Transition.
+
+#### 什么驱动 IPv6 的采纳
+
+主要的网络服务提供商，包括美国大多数的电信运营商，都在积极的促进和部署 IPv6。这是由于多种因素导致的。
+
+#### app 适配IPv6 DNS64/NAT64 网络方案    
+
+反复阅读官方和其他相关文档，关于如何支持IPV6-Only，官方提出了如下几点：    
+1. Use High-Level Networking Frameworks;    
+2. Don’t Use IP Address Literals;    
+3. Check Source Code for IPv6 DNS64/NAT64 Incompatibilities;    
+4. Use System APIs to Synthesize IPv6 Addresses;    
+
+第一点：使用高级别API作为我们的网络请求框架;    
+
+第二点：不是用IP地址字面量：    
+针对第二点，目前使用了IP地址字面量的接口仍然可以正常访问网络，官方文档指出：In iOS 9 and OS X 10.11 and later, NSURLSession and CFNetwork automatically synthesize IPv6 addresses from IPv4 literals locally on devices operating on DNS64/NAT64 networks. However, you should still work to rid your code of IP address literals.    
+所以需要将IP字面量改为域名。
+
+第三点：检查IPv6 DNS64/NAT64 的兼容性    
+构建NAT64 网络，检查APP 在此网络下是否可以正常访问，打开系统偏好设置，长按住Alt 打开共享，选择创建NAT64 网络，共享来源连接选择Thunderbolt 以太网,并用WIFI端口共享给电脑，设置下WIFI名称以及密码相关，启动互联网共享，用手机连接该网络，如果App 可以正常访问网络，说明NAT64 网络环境下App 可以正常访问网络，不需要做任何事情，反正，需要做NAT64 网络的兼容性处理（目前微信是这样的情况，无法正常访问）。
+
+第四点：使用同步了IPv6 地址系统API；    
+
+特别指出：[文章：](http://www.jianshu.com/p/a6bab07c4062)讨论了Reachability是否需要修改支持IPV6的问题,特别指出，Reachability不需要做任何修改，在iOS9上就可以支持IPV6和IPV4，但是在iOS9以下会存在bug ，日后需要引起注意。    
+
+
+***
+
+## 在TARGETS －》Capabilities －》Background Modes 中选中了Voice over IP，开启了VOIP服务，而app没有相关的业务app 审核被拒
+
+#### 提交app store被拒说明
+2.16 - Multitasking Apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc.
+2.16 Details
+
+Your app declares support for VoIP in the UIBackgroundModes key in your Info.plist, but does not include any Voice over IP services.
+
+Next Steps
+
+Please revise your app to either add VoIP features or remove the "voip" setting from the UIBackgroundModes key.
+
+We recognize that VoIP can provide "keep alive" functionality that is useful for many app features. However, using VoIP in this manner is not the intended purpose of VoIP.
+
+Resources
+
+If you have difficulty reproducing a reported issue, please try testing the workflow described in Technical Q&A QA1764: How to reproduce bugs reported against App Store submissions.
+
+If you have code-level questions after utilizing the above resources, you may wish to consult with Apple Developer Technical Support. When the DTS engineer follows up with you, please be ready to provide:
+- complete details of your rejection issue(s)
+- screenshots
+- steps to reproduce the issue(s)
+- symbolicated crash logs - if your issue results in a crash log
+
+
+#### 解决方法 ：在TARGETS －》Capabilities －》Background Modes 中把选中选中的Voice over IP 的勾选去掉
+
+## 11.国际化获取当前语言不标准，导致闪退被拒
+
+问题说明：	
+iOS9的国际化语言和iOS8的国际化语言有一定的差异。比如中国简体在中国地区在iOS8显示为zh-hans，在iOS9显示为zh-hans-CN。在iOS9上有了地区的概念，选择不同的地区会有不同的后缀，直接用获取的语言去适配国际化的话，是一个非常繁琐且工作量非常大的工作。所以，国际化的时候要去掉地区的概念，来显示获取当前语言（这里获取的语言是指和plist里匹配的语言且用plist里没有地区概念的语言）的问题或者图片。处理方式就是放入一个plist文件，内容为没有地区后缀的要适配的语言。
+
+问题原因：	
+这个问题原因是因为每个地区都会有后缀，我的处理方式是减去地区的标识，按照这个逻辑是没有问题的。但有特例（根据返回的日志得出的答案，目前测试不到这个特例），就是在iOS9上出现了没有地区后缀的标识。这样减去后缀就会出现异常。
+
+解决方法：
+处理方式修改为把获取的语言跟plist的语言做一个对比，如果包含plist的国际化的语言就显示plist里面的语言（不能用获取的语言，因为有地区概念，如果不这样处理的话，就要对应的每个地区都要处理），否则就显示英文。
+
+
+
+
