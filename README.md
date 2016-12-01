@@ -1,8 +1,8 @@
 # ios-app-store-review-guidelines-tips
 
-
+**************  
 ## 14 、plist配置文件中存在未使用权限字段被拒问题    
-
+**************  
 * 第一次被拒：
 被拒原文：
 ```
@@ -64,8 +64,8 @@ If you have code-level questions after utilizing the above resources, you may wi
 ####总结：
   在提交app store版本时，应确认使用的功能，一定要加上对应的字段。此外，应确保配置文件plist中没有多余的权限字段，即没有使用到的功能，应及时删除对应字段，否则app会被拒。
 
-**************  
 
+**************  
 
 ## 13 、App Store 上传被拒问题总结之未提供登陆账号给审核人员导致后台播放无法查实被拒的问题    
 
