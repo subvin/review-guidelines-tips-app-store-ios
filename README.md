@@ -22,7 +22,7 @@ Since your iTunes Connect status is Rejected, a new binary will be required. Mak
 
 下面是上面被拒的问题所在：虽然状态栏的电池、时间、运营商等没有问题，状态栏和导航栏颜色不一样，这不符合 iOS 的风格，所以导致被拒。
 
-![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/blob/master/pictures/StatuBar.png)   
+![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/blob/master/pictures/StatuBarProblem.png)   
 
 
 ***
