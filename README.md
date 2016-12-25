@@ -1,6 +1,32 @@
 # ios-app-store-review-guidelines-tips
 
 **************  
+
+## 15. 应用中包含其他平台信息
+被拒原文：
+```
+We noticed that your app or its metadata includes irrelevant third-party platform information. Specifically, non-iOS device status bar is mentioned in the app.
+
+Referencing third-party platforms in your app or its metadata is not permitted on the App Store unless there is specific interactive functionality.
+
+We've attached screenshot(s) for your reference.
+
+Next Steps
+
+Please remove all instances of this information from your app and its metadata, including the app description, What's New info, previews, and screenshots.
+
+Since your iTunes Connect status is Rejected, a new binary will be required. Make the desired metadata changes when you upload the new binary.
+```
+
+原因: iOS 应用中不能包含任何其他平台的图标、文字信息、甚至是其他平台风格样式的控件也会导致审核被拒。
+
+下面是上面被拒的问题所在：虽然状态栏的电池、时间、运营商等没有问题，状态栏和导航栏颜色不一样，这不符合 iOS 的风格，所以导致被拒。
+
+![image](https://github.com/Lewanny/review-guidelines-tips-app-store-ios/blob/master/pictures/StatuBarProblem.png)   
+
+
+***
+
 ## 14 、plist配置文件中存在未使用权限字段被拒问题    
 **************  
 * 第一次被拒：
